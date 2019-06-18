@@ -1,0 +1,43 @@
+<div class="row">
+	<h3>Welcome - Please put in your data</h3>
+	<div class="col-md-5">
+		<form [formGroup]="this.registrationService.form" (ngSubmit)="onSubmit()">
+			<input type="hidden" formControlName="$key">
+			<div class="form-group">
+				<label>First Name</label>
+				<input formControlName="firstName" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.firstName.errors}">
+				<div class="invalid-feedback" *ngIf="submitted && formControls.firstName.errors">This field is required </div>
+				</div>			
+		<div class="form-group">
+			<label>Last Name</label>
+			<input formControlName="lastName" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.lastName.errors}">
+			<div class="invalid-feedback" *ngIf="submitted && formControls.lastName.errors"> This field is required</div>			
+		</div>
+		<div class="form-group">
+			<label>Telephone Number</label>
+			<input formControlName="telephone" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.telephone.errors}">
+			<div class="invalid-feedback" *ngIf="submitted && formControls.telephone.errors">Put in Numbers (at least 8 required)</div>			
+		</div>
+		<div class="form-group">
+			<label>E-Mail</label>
+			<input formControlName="email" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.email.errors}">
+			<div class="invalid-feedback" *ngIf="submitted && formControls.email.errors">Put in a valid e-mail address</div>			
+		</div>
+		<div class="form-group">
+			<label>Address</label>
+			<input formControlName="address" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.email.errors}">		
+			<div class="invalid-feedback" *ngIf="submitted && formControls.address.errors"> This field is required</div>
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Submit">
+		</div>
+	</form>
+	<div class="alert alert-info" *ngIf="showSuccessMessage">submitted successfully		
+	</div>
+</div>
+<div class="col-md-7">
+	<app-registration-list></app-registration-list>
+
+</div>
+
+</div>
