@@ -5,8 +5,9 @@
                 <th>Telephone</th>
                 <th>E-Mail</th>
                 <th>Address</th>
-                <th></th>
-        </thead>
+                <th>Gender</th>
+                <th>Buttons</th>
+       </thead>
         <ng-container *ngFor="let registration of registrationArray">
                 <tr class="table-dark">
                         <td>{{registration.firstName}}</td>
@@ -14,6 +15,7 @@
                         <td>{{registration.telephone}}</td>
                         <td>{{registration.email}}</td>
                         <td>{{registration.address}}</td>
+                        <td>{{registration.gender}}</td>
                         <td>
                                 <button class="btn btn-info">Edit</button>
                                 <button class="btn btn-danger">Delete</button>

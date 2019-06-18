@@ -6,6 +6,7 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 @Injectable({
   providedIn: 'root'
 })
+
 export class RegistrationService {
 
   constructor(private firebase: AngularFireDatabase) {  }
@@ -17,7 +18,8 @@ export class RegistrationService {
   		lastName: new FormControl('', Validators.required), 
   		telephone: new FormControl('',[Validators.required, Validators.minLength(8)]),
   		email: new FormControl('',Validators.email), 
-  		address: new FormControl('', Validators.required)
+  		address: new FormControl('', Validators.required),
+      gender: new FormControl('')
   	});
 
     getRegistration(){
@@ -25,13 +27,15 @@ export class RegistrationService {
       return this.registrationList.snapshotChanges();
     };
 
-    insertRegistration (registration){
+    insertRegistration (registration, value){
       this.registrationList.push({
         firstName: registration.firstName,
         lastName: registration.lastName,
         telephone: registration.telephone,
         email: registration.email,
-        address: registration.address
+        address: registration.address,
+        gender: registration.gender
       });
-    }
+   }
+      
 }

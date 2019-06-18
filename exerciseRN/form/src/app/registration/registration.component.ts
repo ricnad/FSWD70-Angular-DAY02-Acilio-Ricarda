@@ -7,11 +7,12 @@ import { RegistrationService} from "../shared/registration.service";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  allnames: any = ['female','male'];
 
   constructor(private registrationService: RegistrationService) { }
   submitted: boolean;
   formControls= this.registrationService.form.controls;
-  
+
   ngOnInit() {
   }
 

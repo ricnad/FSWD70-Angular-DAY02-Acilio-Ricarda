@@ -29,15 +29,20 @@
 			<div class="invalid-feedback" *ngIf="submitted && formControls.address.errors"> This field is required</div>
 		</div>
 		<div class="form-group">
+			<label>Gender</label>
+			<select formControlName="gender" [ngClass]="{'is-invalid':submitted && formControls.gender.errors}">
+			<option value="" disabled selected>Select Gender</option>
+			<option *ngFor="let name of allnames" value={{name}}>{{name}}</option>
+			</select>
+			<div class="invalid-feedback" *ngIf="submitted && formControls.gender.errors"> This field is required</div>
+		</div>
+
+		<div class="form-group">
 			<input type="submit" class="btn btn-primary" value="Submit">
 		</div>
 	</form>
-	<div class="alert alert-info" *ngIf="showSuccessMessage">submitted successfully		
-	</div>
+
 </div>
 <div class="col-md-7">
 	<app-registration-list></app-registration-list>
-
-</div>
-
 </div>
