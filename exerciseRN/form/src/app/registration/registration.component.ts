@@ -9,9 +9,11 @@ import { RegistrationService} from "../shared/registration.service";
 export class RegistrationComponent implements OnInit {
   allnames: any = ['female','male'];
 
-  constructor(private registrationService: RegistrationService) { }
+  constructor(public registrationService: RegistrationService) { }
   submitted: boolean;
   formControls= this.registrationService.form.controls;
+  showSuccessMessage: boolean;
+
 
   ngOnInit() {
   }
@@ -19,15 +21,16 @@ export class RegistrationComponent implements OnInit {
   onSubmit(){
   	this.submitted = true;
   	if(this.registrationService.form.valid){
-  	if(this.registrationService.form.get("$key").value == null){
-  		this.registrationService.insertRegistration(this.registrationService.form.value);
+  	  if(this.registrationService.form.get("$key").value == null)
+        this.registrationService.insertRegistration(this.registrationService.form.value);
+      else
+        this.registrationService.updateRegistration(this.registrationService.form.value);
       this.showSuccessMessage = true;
       setTimeout(()=> this.showSuccessMessage=false, 3000);
       this.submitted = false;
       this.registrationService.form.reset();
-  	} else {
-
-  	}
-  }
+  	} 
+  
 }
+ 
 }

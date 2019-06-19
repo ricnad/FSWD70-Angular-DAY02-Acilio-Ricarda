@@ -7,8 +7,11 @@ import { RegistrationService } from "../shared/registration.service";
   styleUrls: ['./registration-list.component.css']
 })
 export class RegistrationListComponent implements OnInit {
+  registrationArray=[];
+  showDeletemessage: boolean;
+  searchText: string="";
 
-  constructor(private registrationService: RegistrationService) { }
+  constructor(public registrationService: RegistrationService) { }
 
   ngOnInit() {
   	this.registrationService.getRegistration().subscribe(
@@ -20,6 +23,15 @@ export class RegistrationListComponent implements OnInit {
   				}
   			})
   		});
+  }
+  onDelete($key){
+    if(confirm("Are you sure you want to delete this record?")){this.registrationService.deleteRegistration($key);
+      this.showDeletemessage=true;
+      setTimeout(()=> this.showDeletemessage=false,3000)
+    }
+  }
+  filterCondition(registration){
+    return registration.firstName.toLowerCase().indexOf(this.searchText.toLowerCase())!=-1;
   }
 
 }

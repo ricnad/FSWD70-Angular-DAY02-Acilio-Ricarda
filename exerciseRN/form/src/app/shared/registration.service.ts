@@ -9,7 +9,7 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
 export class RegistrationService {
 
-  constructor(private firebase: AngularFireDatabase) {  }
+  constructor(public firebase: AngularFireDatabase) {  }
     registrationList: AngularFireList<any>;
 
   	form = new FormGroup({
@@ -27,7 +27,7 @@ export class RegistrationService {
       return this.registrationList.snapshotChanges();
     };
 
-    insertRegistration (registration, value){
+    insertRegistration (registration){
       this.registrationList.push({
         firstName: registration.firstName,
         lastName: registration.lastName,
@@ -37,5 +37,21 @@ export class RegistrationService {
         gender: registration.gender
       });
    }
+   populateForm(registration){
+     this.form.setValue(registration);
+   }
+   updateRegistration(registration){
+     this.registrationList.update(registration.$key,{
+       firstName: registration.firstName,
+       lastName: registration.lastName,
+       telephone: registration.telephone,
+       email: registration.email,
+       address: registration.address,
+       gender: registration.gender
+     });
+   }
+    deleteRegistration($key:string){
+    this.registrationList.remove($key);
+  }
       
 }

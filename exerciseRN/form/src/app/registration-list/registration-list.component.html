@@ -1,3 +1,9 @@
+<form class="form-inline">
+    <input name="searchInput" class="form-control" placeholder="Search" #searchInput="ngModel" [(ngModel)]="searchText" style="width:80%;">
+    <button class="btn btn-outline-primary" (click)="searchText=''">x</button>
+</form>
+
+
 <table class="table table-sm">
         <thead>
                 <th>First Name</th>
@@ -9,7 +15,7 @@
                 <th>Buttons</th>
        </thead>
         <ng-container *ngFor="let registration of registrationArray">
-                <tr class="table-dark">
+                <tr class="table-dark" *ngIf="filterCondition(registration)">
                         <td>{{registration.firstName}}</td>
                         <td>{{registration.lastName}}</td>
                         <td>{{registration.telephone}}</td>
@@ -17,9 +23,11 @@
                         <td>{{registration.address}}</td>
                         <td>{{registration.gender}}</td>
                         <td>
-                                <button class="btn btn-info">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-info" (click)="registrationService.populateForm(registration)">Edit</button>
+                            <button class="btn btn-danger" (click)="onDelete(registration.$key)">Delete</button>
                         </td>
                 </tr>
         </ng-container>
 </table>
+<div class="alert alert-danger" *ngIf="showDeletemessage">Deleted succesfully    
+</div>
